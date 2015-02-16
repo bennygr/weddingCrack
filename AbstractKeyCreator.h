@@ -1,14 +1,13 @@
 //--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
-#include "CypherTextReader.h"
 #include "Key.h"
-#include "RandomKeyCreator.h"
 //--------------------------------------------------------------------------
-class Cracker
+
+class AbstractKeyCreator
 {
 	public:
-		void Crack(CypherTextReader cr,AbstractKeyCreator* keyCreator);
+		virtual Key* GetNextKey(Key* currentKey)=0;
 };
 //--------------------------------------------------------------------------
 //EOF

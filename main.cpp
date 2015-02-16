@@ -42,8 +42,9 @@ int main(int argc, char** argv)
 	//std::string su = subst.Substitute(next,key);
 	//std::cout << "SU: " << su << std::endl;
 	
+	AbstractKeyCreator *keyCreator = new RandomKeyCreator();
 	Cracker cracker;
-	cracker.Crack(cr);
+	cracker.Crack(cr,keyCreator);
 
 
 	//std::cout << key.GetCypher("C") << std::endl;
