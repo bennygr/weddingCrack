@@ -1,7 +1,8 @@
 //--------------------------------------------------------------------------
 #include <iostream>
 #include <string>
-#include "CypherTextReader.h"
+#include "InputReader.h"
+#include "QuadgramParser.h"
 #include "Key.h"
 #include "Dictionary.h"
 #include "Substituter.h"
@@ -12,15 +13,16 @@
 //--------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-	CypherTextReader cr("input.txt");
-	int cypherTextLength = cr.Read();
-	if(cypherTextLength < 1)
+	InputReader inputReader;
+	int cypherTextLength = inputReader.ReadFromFile("input.txt");
+	std::string cypherText = inputReader.GetContent();
+	if(cypherTextLength == 0)
 	{
 		std::cerr << "Error: No cypher text specified!" << std::endl;
 		return -1;
 	}
-	std::cout << "Cypher text loaded: " << cypherTextLength << " words/lines" << std::endl;
 
+	std::cout << "Cypher text loaded: " << cypherTextLength << " characters" << std::endl;
 	std::string dictName = "german.dict";
 	Dictionary dict("german.dic");
 	std::cout << "Loading dictionary " << 
@@ -32,23 +34,12 @@ int main(int argc, char** argv)
 				 dict.GetSize() << 
 				 " words " << 
 				 std::endl;
-
 	std::cout << "-------------------------------------" << std::endl;
 
-
-
-	//Substituter subst;
-	//std::string next = cr.GetNextLine();
-	//std::string su = subst.Substitute(next,key);
-	//std::cout << "SU: " << su << std::endl;
 	
 	AbstractKeyCreator *keyCreator = new RandomKeyCreator();
 	Cracker cracker;
-	cracker.Crack(cr,keyCreator);
-
-
-	//std::cout << key.GetCypher("C") << std::endl;
-	//std::cout << key.GetPlain("f") << std::endl;
+	cracker.Crack(cypherText,keyCreator);
 
 	return 0;
 }

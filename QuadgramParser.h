@@ -5,23 +5,25 @@
 #include <vector>
 //--------------------------------------------------------------------------
 
-class CypherTextReader
+class QuadgramParser
 {
 	private:
-		std::string fileName;
-		std::vector<std::string> content;
-		int pos;
+		int size;
+		std::vector<std::string> quadgrams;
 
 	public:
-		CypherTextReader(std::string fileName)
+		QuadgramParser()
 		{
-			this->fileName = fileName;
-			this->pos = 0;
+			this->size = 4;
 		}
-		size_t Read();
+
+		QuadgramParser(int size)
+		{
+			this->size = size;
+		}
+
+		size_t Parse(std::string content);
 		size_t GetSize();
-		std::string GetAll();
-		std::string GetNextLine();
 };
 
 //--------------------------------------------------------------------------

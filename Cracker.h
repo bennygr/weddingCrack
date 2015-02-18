@@ -1,14 +1,17 @@
 //--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
-#include "CypherTextReader.h"
+#include "QuadgramParser.h"
 #include "Key.h"
 #include "RandomKeyCreator.h"
 //--------------------------------------------------------------------------
 class Cracker
 {
 	public:
-		void Crack(CypherTextReader cr,AbstractKeyCreator* keyCreator);
+		void Crack(std::string cryptedContent,AbstractKeyCreator* keyCreator);
+		void PrintKey(Key* key);
+
+
 };
 //--------------------------------------------------------------------------
 //EOF

@@ -5,11 +5,15 @@
 //--------------------------------------------------------------------------
 Key* RandomKeyCreator::GetNextKey(Key* currentKey)
 {
-	int l = currentKey->GetLength();
+	//Swap to random key-letters
+	int len = currentKey->GetLength();
+	int first = random(len);
+	int second = random(len);
+	std::string cFirst = currentKey->GetCypher(first);
+	std::string cSecond = currentKey->GetCypher(second);
+	currentKey->SetLetter(first,cSecond);
+	currentKey->SetLetter(second,cFirst);
 
-	int r = random(l);
-
-	std::cout << "TEST: " << r << std::endl;
 	return currentKey;
 }
 
