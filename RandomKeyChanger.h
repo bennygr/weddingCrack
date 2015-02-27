@@ -1,14 +1,13 @@
-//--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
-#include <string>
+#include "AbstractKeyChanger.h"
 #include "Key.h"
+#include <map>
 //--------------------------------------------------------------------------
-class Substituter
+class RandomKeyChanger : public AbstractKeyChanger
 {
-	private:
 	public:
-		std::string Substitute(std::string text,Key key);
+		virtual Key GetNextKey(Key key,std::map<std::string,std::string> preset);
 };
 //--------------------------------------------------------------------------
 //EOF

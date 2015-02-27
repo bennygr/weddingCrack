@@ -1,14 +1,22 @@
-//--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
 #include <string>
-#include "Key.h"
+#include <iostream>
+#include <map>
 //--------------------------------------------------------------------------
-class Substituter
+class GuessesReader
 {
 	private:
+		std::string fileName;
+		std::map<std::string,std::string> guesses;
 	public:
-		std::string Substitute(std::string text,Key key);
+		GuessesReader (std::string fileName)
+		{
+			this->fileName = fileName;
+		}
+
+		void Load();
+		std::map<std::string,std::string> GetGuesses();
 };
 //--------------------------------------------------------------------------
 //EOF

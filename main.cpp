@@ -2,11 +2,13 @@
 #include <iostream>
 #include <string>
 #include "InputReader.h"
-#include "QuadgramParser.h"
 #include "Key.h"
-#include "Dictionary.h"
 #include "Substituter.h"
 #include "Cracker.h"
+#include "SimpleQuadgramMeassuring.h"
+#include "RandomKeyCreator.h"
+#include "RandomKeyChanger.h"
+#include "NGramDictionary.h"
 //--------------------------------------------------------------------------
 
 
@@ -23,23 +25,18 @@ int main(int argc, char** argv)
 	}
 
 	std::cout << "Cypher text loaded: " << cypherTextLength << " characters" << std::endl;
-	std::string dictName = "german.dict";
-	Dictionary dict("german.dic");
-	std::cout << "Loading dictionary " << 
-				 dictName << 
-				 " ... " <<
-				 std::endl;
-	dict.Load();
-	std::cout << "Dictionary loaded: " << 
-				 dict.GetSize() << 
-				 " words " << 
-				 std::endl;
+	std::cout << "Cracking text:" << std::endl;
+	std::cout << cypherText << std::endl;
+	std::cout << "Let's go! ..." << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
 
-	
+	NGramDictionary dict("german_quadgrams.txt");
+	dict.Load();
 	AbstractKeyCreator *keyCreator = new RandomKeyCreator();
+	AbstractKeyChanger *keyChanger = new RandomKeyChanger();
+	AbstractMeassuring *meassure = new SimpleQuadgramMeassuring(&dict);
 	Cracker cracker;
-	cracker.Crack(cypherText,keyCreator);
+	cracker.Crack(cypherText,keyCreator,keyChanger,meassure);
 
 	return 0;
 }

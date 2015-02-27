@@ -3,45 +3,54 @@
 #include "Key.h"
 #include <iostream>
 #include "Substituter.h"
+#include "GuessesReader.h"
 //--------------------------------------------------------------------------
-void Cracker::Crack(std::string cryptedContent,AbstractKeyCreator* keyCreator)
+void Cracker::Crack(std::string cypherText,
+					AbstractKeyCreator* keyCreator, 
+					AbstractKeyChanger* keyChanger,
+					AbstractMeassuring *meassure)
 {
-	//Initial Key
-	Key *key = new Key();
-	key->SetLetter("A","A");
-	key->SetLetter("B","B");
-	key->SetLetter("C","C");
-	key->SetLetter("D","D");
-	key->SetLetter("E","E");
-	key->SetLetter("F","F");
-	key->SetLetter("G","G");
-	key->SetLetter("H","H");
-	key->SetLetter("I","I");
-	key->SetLetter("J","J");
-	key->SetLetter("K","K");
-	key->SetLetter("L","L");
+	GuessesReader guessReader("guesses.txt");
+	guessReader.Load();
+	std::map<std::string,std::string> preset
+		= guessReader.GetGuesses();
 
-
-	//1) encrypt text
-	//2) parse quadgrams
-	//3) meassure result
-	QuadgramParser quadgramParser;
-	int quadgramCount = quadgramParser.Parse(cryptedContent);
-	std::cout << quadgramCount << " quadgrams parsed." << std::endl;
-
-	for(int i = 0; i<2000;i++)
+	for (int i = 0  ; i < 100 ; i ++ )
 	{
-		//key = keyCreator->GetNextKey(key);
-		//std::cout << key->ToString() << std::endl;
-		//std::string word = "";
-		//Substituter subst;
-		//while((word = cr.GetNextLine()) != "")
-		//{
-		//	std::string sWord = subst.Substitute(word,*key);
-		//	std::cout << sWord << std::endl;
-		//}
-		//cr.Reset();
+		Key parentKey = keyCreator->CreateKey(preset);
+		std::cout << "Trying cracking with Key:" << std::endl;
+		std::cout << parentKey.ToString() << std::endl;
+		int noInprovementCounter  = 0;
+		Substituter substituter;
+		std::string clearText = substituter.Substitute(cypherText,parentKey);
+		double m1 = meassure->Meassure(clearText);
+		while(noInprovementCounter < 1000)
+		{
+			Key newKey = keyChanger->GetNextKey(parentKey,preset);
+			clearText= substituter.Substitute(cypherText,newKey);
+			double m2 = meassure->Meassure(clearText);
+
+			if(m2 > m1)
+			{
+				m1 = m2;
+				parentKey = newKey;
+				noInprovementCounter = 0;
+				//std::cout << clearText << std::endl;
+			}
+			else
+			{
+				noInprovementCounter++;
+			}
+		}
+		std::cout << "Best text this round: " << std::endl;
+		std::cout << "With key:" << std::endl;
+		std::cout << parentKey.ToString() << std::endl;
+		std::cout << cypherText << std::endl;
+		std::cout << clearText << std::endl;
 	}
+}
+bool Cracker::AssertKey(Key)
+{
 
 }
 //--------------------------------------------------------------------------

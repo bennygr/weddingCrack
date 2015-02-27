@@ -1,30 +1,13 @@
 //--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
-#include <string>
-#include <vector>
+#include "Key.h"
 //--------------------------------------------------------------------------
 
-class QuadgramParser
+class AbstractKeyChanger
 {
-	private:
-		int size;
-		std::vector<std::string> quadgrams;
-
 	public:
-		QuadgramParser()
-		{
-			this->size = 4;
-		}
-
-		QuadgramParser(int size)
-		{
-			this->size = size;
-		}
-
-		size_t Parse(std::string content);
-		size_t GetSize();
+		virtual Key GetNextKey(Key key,std::map<std::string,std::string> preset) = 0;
 };
-
 //--------------------------------------------------------------------------
 //EOF

@@ -1,15 +1,18 @@
 //--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
-#include "QuadgramParser.h"
+#include "NGramParser.h"
 #include "Key.h"
-#include "RandomKeyCreator.h"
+#include "AbstractKeyCreator.h"
+#include "AbstractKeyChanger.h"
+#include "AbstractMeassuring.h"
 //--------------------------------------------------------------------------
 class Cracker
 {
+	private: 
+		bool AssertKey(Key);
 	public:
-		void Crack(std::string cryptedContent,AbstractKeyCreator* keyCreator);
-		void PrintKey(Key* key);
+		void Crack(std::string cypherText,AbstractKeyCreator* keyCreator, AbstractKeyChanger* keyChanger,AbstractMeassuring *meassure);
 
 
 };

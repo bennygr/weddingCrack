@@ -1,14 +1,18 @@
-//--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
-#include <string>
-#include "Key.h"
+#include "AbstractMeassuring.h"
+#include "NGramDictionary.h"
 //--------------------------------------------------------------------------
-class Substituter
+class SimpleQuadgramMeassuring : public AbstractMeassuring
 {
 	private:
+		NGramDictionary* dict;
 	public:
-		std::string Substitute(std::string text,Key key);
+		SimpleQuadgramMeassuring(NGramDictionary* dict)
+		{
+			this->dict = dict;
+		}
+		virtual double Meassure(std::string text);
 };
 //--------------------------------------------------------------------------
 //EOF

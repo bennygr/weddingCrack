@@ -2,23 +2,23 @@
 #pragma once
 //--------------------------------------------------------------------------
 #include <string>
-#include <vector>
+#include <map>
 //--------------------------------------------------------------------------
 
-class Dictionary
+class NGramDictionary
 {
 	private:
 		std::string fileName;
-		std::vector<std::string> dictionary;
+		std::map<std::string,double> ngrams;
 	public:
-		Dictionary (std::string fileName)
+		NGramDictionary (std::string fileName)
 		{
 			this->fileName = fileName;
 		}
 
 		void Load();
 		void Print();
-		bool HasWord(std::string word);
+		double GetValueForWord(std::string word);
 		size_t GetSize();
 };
 

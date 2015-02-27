@@ -1,14 +1,11 @@
-//--------------------------------------------------------------------------
 #pragma once
 //--------------------------------------------------------------------------
 #include <string>
-#include "Key.h"
 //--------------------------------------------------------------------------
-class Substituter
+class AbstractMeassuring
 {
-	private:
 	public:
-		std::string Substitute(std::string text,Key key);
+		virtual double Meassure(std::string text) = 0;
 };
 //--------------------------------------------------------------------------
 //EOF
