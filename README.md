@@ -19,7 +19,7 @@ A simple, not efficient, prototype and proof of concept for breaking [simple sub
   
 ##Usage
 - Place the cypher text into the file input.txt
-- Make sure you've copied your quadram list of the target language to ngrams.txt.
+- Make sure you've copied your quadgrams list of the target's language to ngrams.txt.
 - Run the program: ./wdc
 - Place your guesses into the file guesses.txt
 - Run the program..
