@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	std::cout << "Let's go! ..." << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
 
-	NGramDictionary dict("german_quadgrams.txt");
+	NGramDictionary dict("ngrams.txt");
 	dict.Load();
 	AbstractKeyCreator *keyCreator = new RandomKeyCreator();
 	AbstractKeyChanger *keyChanger = new RandomKeyChanger();
