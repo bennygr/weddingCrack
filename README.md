@@ -2,7 +2,7 @@
 A simple, not efficient, prototype of a cracking tool for breaking a [simple substitution cipher](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/).
 
 ## What is wedding Crack?
-weddingCrack is a simple, not efficient, prototype of a cracking tool for breaking a [simple substitution cipher](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/). It uses a climbing hill algorithm starting with a random key and get the deciphered textfitter and fitter.
+weddingCrack is a simple, not efficient, prototype of a cracking tool for breaking a [simple substitution cipher](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/). It uses a climbing hill algorithm starting with a random key and get the deciphered text fitter and fitter.
 
 
 ##Features / Limitations
