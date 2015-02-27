@@ -1,13 +1,13 @@
 # weddingCrack
-A simple, not efficient, prototype of a cracking tool for breaking a [simple substitution cipher](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/).
+A simple, not efficient, prototype and proof of concept for breaking [simple substitution ciphers](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/).
 
 ## What is wedding Crack?
-weddingCrack is a simple, not efficient, prototype of a cracking tool for breaking a [simple substitution cipher](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/). It uses a climbing hill algorithm starting with a random key and get the deciphered text fitter and fitter.
+A simple, not efficient, prototype and proof of concept for breaking [simple substitution ciphers](http://practicalcryptography.com/ciphers/classical-era/simple-substitution/). It starts with a random key and uses a climbing hill algorithm to get the deciphered text fitter and fitter. This works by [computing the quadgrams of the deciphered text](http://practicalcryptography.com/cryptanalysis/text-characterisation/quadgrams/) and compares them with a list of most common quadrams in a specified language.
 
 
 ##Features / Limitations
 
-  - This program is just a simple example implementation and neither optimized for speed nor for extendability
+  - This program is just a simple example implementation and neither optimized for speed nor for extendibility
   - Place your key guesses into the file guesses.txt
   - German dictionary of [quadgrams](http://practicalcryptography.com/cryptanalysis/text-characterisation/quadgrams/)
     more can be found [here](http://practicalcryptography.com/cryptanalysis/text-characterisation/quadgrams/)
