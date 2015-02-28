@@ -22,7 +22,7 @@ The sources are plain standard C++ (with some C++11 features used)
 ##Usage
 - Place the cypher text into the file input.txt
 - Make sure you've copied your quadgram list for the target's language to ngrams.txt.
-- Run the program: ./wdc
+- Run the program: ./wdc      or      ./wdc | less
 - See if you can find some real decyphered words which and place your guesses into the file guesses.txt
 - Run the program again
 - continue until you have the cleartext
